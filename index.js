@@ -6,10 +6,13 @@ const { prompt } = pkg;
 
 import { writeFile } from "fs";
 
-import Employee from "./lib/Employee.js";
+// import Employee from "./lib/Employee.js";
 import Manager from "./lib/Manager.js";
 import Engineer from "./lib/Engineer.js";
 import Intern from "./lib/Intern.js";
+
+const teamMembers = [];
+const createPage = import('./src/page-template.js');
 
 const employeeQuestions = [
   {
@@ -29,7 +32,7 @@ const employeeQuestions = [
   },
 ];
 
-const managerQuestion = [
+const managerQuestions = [
   {
     type: "input",
     name: "number",
@@ -37,59 +40,57 @@ const managerQuestion = [
   },
 ];
 
-const engineerQuestion = [
+const engineerQuestions = [
   {
     type: "input",
-    name: "number",
+    name: "github",
     message: "What is their github profile link?",
   },
 ];
 
-const internQuestion = [
+const internQuestions = [
   {
     type: "input",
-    name: "number",
+    name: "school",
     message: "Which school did they attend?",
   },
 ];
 
-const teamMembers = [];
-
-const init = () => {
-  prompt({
-    type: "toggle",
-    name: "continue",
-    message: "Are you ready to enter the team Manager's information?",
-    enabled: "Yep",
-    disabled: "Nope",
-  }).then((answer) => {
-    if (answer.continue === false) {
-      process.exit();
-    } else {
-      addManager();
-    }
-  });
-  // .catch(console.error);
-};
-
 const addManager = () => {
-  prompt([...employeeQuestions, ...managerQuestion]).then((answer) => {
-    console.log(answer);
-    teamMembers.push(answer);
+  prompt([...employeeQuestions, ...managerQuestions]).then((answers) => {
+    const newManager = new Manager(
+      answers.name,
+      answers.id,
+      answers.email,
+      answers.number
+    );
+    teamMembers.push(newManager);
     addWrite();
   });
 };
 
 const addEngineer = () => {
-  prompt([...employeeQuestions, ...engineerQuestion]).then((answer) => {
-    teamMembers.push(answer);
+  prompt([...employeeQuestions, ...engineerQuestions]).then((answers) => {
+    const newEngineer = new Engineer(
+      answers.name,
+      answers.id,
+      answers.email,
+      answers.github
+    );
+    teamMembers.push(newEngineer);
     addWrite();
   });
 };
 
 const addIntern = () => {
-  prompt([...employeeQuestions, ...internQuestion]).then((answer) => {
-    teamMembers.push(answer);
+  prompt([...employeeQuestions, ...internQuestions]).then((answers) => {
+    const newIntern = new Intern(
+      answers.name,
+      answers.id,
+      answers.email,
+      answers.school
+    );
+    teamMembers.push(newIntern);
     addWrite();
   });
 };
@@ -101,23 +102,23 @@ const addWrite = () => {
     message:
       "Do you want to add a new team member OR write the current team to index.html?",
     choices: ["Add", "Write"],
-  }).then((answer) => {
-    if (answer.role === "Add") {
-      addTeam();
-    } else if (answer === "Write") {
-      writeFile();
+  }).then((answers) => {
+    if (answers.role === "Add") {
+      addMember();
+    } else if (answers.role === "Write") {
+      writeHTML();
     }
   });
 };
 
-const addTeam = () => {
+const addMember = () => {
   prompt({
     type: "select",
     name: "type",
     message: "Do you want to add an Engineer or Intern to the team?",
     choices: ["Engineer", "Intern"],
-  }).then((answer) => {
-    switch (answer.type) {
+  }).then((answers) => {
+    switch (answers.type) {
       case "Engineer":
         addEngineer();
         break;
@@ -131,16 +132,30 @@ const addTeam = () => {
   });
 };
 
-const generateHTML = ({ teamMembers }) =>
-  `<html><body>${teamMembers}</body></html>`;
-
 const writeHTML = () => {
-  console.dir(teamMembers, { depth: null });
-  // const htmlContent = generateHTML(teamMembers);
+  console.log(teamMembers)
+  // const htmlContent = createPage(teamMembers);
 
-  // writeFile("index.html", htmlContent, (err) =>
-  //   err ? console.log(err) : console.log("Successfully created README.md!")
+  // writeFile("./dist/index.html", htmlContent, (err) =>
+  //   err ? console.log(err) : console.log("Successfully created index.html!")
   // );
+};
+
+const init = () => {
+  prompt({
+    type: "toggle",
+    name: "continue",
+    message: "Are you ready to enter the team Manager's information?",
+    enabled: "Yep",
+    disabled: "Nope",
+  }).then((answers) => {
+    if (answers.continue === false) {
+      process.exit();
+    } else {
+      addManager();
+    }
+  });
+  // .catch(console.error);
 };
 
 init();
