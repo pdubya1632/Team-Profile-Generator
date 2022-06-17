@@ -1,24 +1,21 @@
-// const enquirer = require("enquirer");  // https://github.com/enquirer/enquirer
-// import { prompt } from "enquirer";
-
 import pkg from "enquirer";
 const { prompt } = pkg;
 
-import { writeFile } from "fs";
+import { writeFileSync } from "fs";
 
 // import Employee from "./lib/Employee.js";
 import Manager from "./lib/Manager.js";
 import Engineer from "./lib/Engineer.js";
 import Intern from "./lib/Intern.js";
 
+import createPage from './src/page-template.js';
 const teamMembers = [];
-const createPage = import('./src/page-template.js');
 
 const employeeQuestions = [
   {
     type: "input",
     name: "name",
-    message: "What is the employee's full name?",
+    message: "What is the employee's first name?",
   },
   {
     type: "input",
@@ -135,9 +132,9 @@ const addMember = () => {
 };
 
 const writeHTML = () => {
-  const htmlContent = createPage(teamMembers);
+  // const htmlContent = createPage(teamMembers);
 
-  writeFile("./dist/index.html", htmlContent, (err) =>
+  writeFileSync("./dist/index.html", createPage(teamMembers), (err) =>
     err ? console.log(err) : console.log("Successfully created index.html!")
   );
 };

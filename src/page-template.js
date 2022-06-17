@@ -1,120 +1,108 @@
-// create the team in html
-const createPage = (teamMembers) => {
-    // create the manager card in html file
-    const generateManager = (manager) => {
-      return `
-          <div class="card employee-card">
-          <div class="card-header">
-              <h2 class="card-title">${manager.adoptedName()}</h2>
-              <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.adoptedRole()}</h3>
-          </div>
-          <div class="card-body">
-              <ul class="list-group">
-                  <li class="list-group-item">ID: ${manager.adoptedId()}</li>
-                  <li class="list-group-item">Email: <a href="mailto:${manager.adoptedEmail()}">${manager.adoptedEmail()}</a></li>
-                  <li class="list-group-item">Office number: ${manager.adoptedOfficeNumber()}</li>
-              </ul>
-          </div>
-      </div>
-          `;
-    };
-  
-    // create the engineer card in html
-    const generateEngineer = (engineer) => {
-      return `
-          <div class="card employee-card">
-      <div class="card-header">
-          <h2 class="card-title">${engineer.adoptedName()}</h2>
-          <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.adoptedRole()}</h3>
-      </div>
-      <div class="card-body">
-          <ul class="list-group">
-              <li class="list-group-item">ID: ${engineer.adoptedId()}</li>
-              <li class="list-group-item">Email: <a href="mailto:${engineer.adoptedEmail()}">${engineer.adoptedEmail()}</a></li>
-              <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.adoptedGithub()}" target="_blank" rel="noopener noreferrer">${engineer.adoptedGithub()}</a></li>
-          </ul>
-      </div>
-  </div>
-          `;
-    };
-  
-    // create the intern card in html
-    const generateIntern = (intern) => {
-      return `
-          <div class="card employee-card">
-      <div class="card-header">
-          <h2 class="card-title">${intern.adoptedName()}</h2>
-          <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.adoptedRole()}</h3>
-      </div>
-      <div class="card-body">
-          <ul class="list-group">
-              <li class="list-group-item">ID: ${intern.adoptedId()}</li>
-              <li class="list-group-item">Email: <a href="mailto:${intern.adoptedEmail()}">${intern.adoptedEmail()}</a></li>
-              <li class="list-group-item">School: ${intern.adoptedSchool()}</li>
-          </ul>
-      </div>
-  </div>
-          `;
-    };
-  
-    const html = [];
-  
-    html.push(
-      teamMembers
-        .filter((employee) => employee.adoptedRole() === "Manager")
-        .map((manager) => generateManager(manager))
-    );
-    html.push(
-      teamMembers
-        .filter((employee) => employee.adoptedRole() === "Engineer")
-        .map((engineer) => generateEngineer(engineer))
-        .join("")
-    );
-    html.push(
-      teamMembers
-        .filter((employee) => employee.adoptedRole() === "Intern")
-        .map((intern) => generateIntern(intern))
-        .join("")
-    );
-  
-    return html.join("");
-  };
-  
-  // export function to generate entire page
 
-//   module.exports = (team) => {
-//     return `
-//       <!DOCTYPE html>
-//   <html lang="en">
+const createPage = (teamMembers) => {
+  const createManager = (manager) => {
+    return `
+      <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=8B7BCDC2" alt="Profile Photo" /></figure>
+      <div class="card-body">
+        <h2 class="card-title">
+        ${manager.getName()}
+          <div class="badge badge-secondary">${manager.getRole()}</div>
+        </h2>
+        <ul>
+          <li>ID : ${manager.getId()}</li>
+          <li><a href="mailto:${manager.getEmail()}">Email : ${manager.getEmail()}</a></li>
+          <li>Office number: ${manager.getNumber()}</li>
+        </ul>
+        <div class="card-actions justify-end">
+          <button class="btn btn-sm"><a href="mailto:${manager.getEmail()}">Email ${manager.getName()}</a></button>
+        </div>
+      </div>
+          `;
+  };
+
+  const createEngineer = (engineer) => {
+    return `
+        <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=225E6693" alt="Profile Photo" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">
+          ${engineer.getName()}
+            <div class="badge badge-secondary">${engineer.getRole()}</div>
+          </h2>
+          <ul>
+            <li>ID : ${engineer.getId()}</li>
+            <li><a href="mailto:${engineer.getEmail()}">Email : ${engineer.getEmail()}</a></li>
+            <li>GitHub: <a href="https://github.com/${engineer.getGithub()}" target="_blank" rel="noopener noreferrer">${engineer.getGithub()}</a></li>
+          </ul>
+          <div class="card-actions justify-end">
+          <button class="btn btn-sm"><a href="mailto:${engineer.getEmail()}">Email ${engineer.getName()}</a></button>
+          </div>
+        </div>
+            `;
+  };
+
+  const createIntern = (intern) => {
+    return `
+        <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=2D297A22" alt="Profile Photo" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">
+          ${intern.getName()}
+            <div class="badge badge-secondary">${intern.getRole()}</div>
+          </h2>
+          <ul>
+            <li>ID : ${intern.getId()}</li>
+            <li><a href="mailto:${intern.getEmail()}">Email : ${intern.getEmail()}</a></li>
+            <li>School: ${intern.getSchool()}</li></ul>
+          <div class="card-actions justify-end">
+          <button class="btn btn-sm"><a href="mailto:${intern.getEmail()}">Email ${intern.getName()}</a></button>
+          </div>
+        </div>
+            `;
+  };
+
+  const html = [];
+
+  html.push(
+    teamMembers
+      .filter((employee) => employee.getRole() === "Manager")
+      .map((manager) => createManager(manager))
+  );
+  html.push(
+    teamMembers
+      .filter((employee) => employee.getRole() === "Engineer")
+      .map((engineer) => createEngineer(engineer))
+      .join("")
+  );
+  html.push(
+    teamMembers
+      .filter((employee) => employee.getRole() === "Intern")
+      .map((intern) => createIntern(intern))
+      .join("")
+  );
+
+  return html.join("");
+};
+
+export default function (teamMembers) {
+  return `
+  <!doctype html>
+  <html data-theme="dracula">
   
-//   <head>
-//       <meta charset="UTF-8" />
-//       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-//       <title>My Team</title>
-//       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-//           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-//       <link rel="stylesheet" href="./css/style.css">
-//       <script src="https://kit.fontawesome.com/c502137733.js"></script>
-//   </head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
   
-//   <body>
-//       <div class="container-fluid">
-//           <div class="row">
-//               <div class="col-12 jumbotron mb-3 team-heading">
-//                   <h1 class="text-center">My Team</h1>
-//               </div>
-//           </div>
-//       </div>
-//       <div class="container">
-//           <div class="row">
-//               <div class="team-area col-12 d-flex justify-content-center">
-//                   ${generateTeam(team)}
-//               </div>
-//           </div>
-//       </div>
-//   </body>
-//   </html>
-//       `;
-//   };
+  <body>
+    <header class="navbar bg-base-100">
+      <a href="/" class="btn btn-ghost normal-case text-xl">Team Directory</a>
+    </header>
+    <div class="card-compact w-96 bg-base-100 shadow-xl">
+      ${createPage(teamMembers)}
+    </div>
+  </body>
   
+  </html>
+    `;
+};
