@@ -69,6 +69,8 @@ const addManager = () => {
   });
 };
 
+
+
 const addEngineer = () => {
   prompt([...employeeQuestions, ...engineerQuestions]).then((answers) => {
     const newEngineer = new Engineer(
@@ -133,12 +135,11 @@ const addMember = () => {
 };
 
 const writeHTML = () => {
-  console.log(teamMembers)
-  // const htmlContent = createPage(teamMembers);
+  const htmlContent = createPage(teamMembers);
 
-  // writeFile("./dist/index.html", htmlContent, (err) =>
-  //   err ? console.log(err) : console.log("Successfully created index.html!")
-  // );
+  writeFile("./dist/index.html", htmlContent, (err) =>
+    err ? console.log(err) : console.log("Successfully created index.html!")
+  );
 };
 
 const init = () => {
