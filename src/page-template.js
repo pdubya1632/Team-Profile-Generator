@@ -2,7 +2,8 @@
 const createPage = (teamMembers) => {
   const createManager = (manager) => {
     return `
-      <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=8B7BCDC2" alt="Profile Photo" /></figure>
+    <div class="card w-96 bg-base-100 shadow-xl">  
+    <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=8B7BCDC2" alt="Profile Photo" /></figure>
       <div class="card-body">
         <h2 class="card-title">
         ${manager.getName()}
@@ -17,12 +18,14 @@ const createPage = (teamMembers) => {
           <button class="btn btn-sm"><a href="mailto:${manager.getEmail()}">Email ${manager.getName()}</a></button>
         </div>
       </div>
+      </div>
           `;
   };
 
   const createEngineer = (engineer) => {
     return `
-        <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=225E6693" alt="Profile Photo" /></figure>
+    <div class="card w-96 bg-base-100 shadow-xl">    
+    <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=225E6693" alt="Profile Photo" /></figure>
         <div class="card-body">
           <h2 class="card-title">
           ${engineer.getName()}
@@ -37,12 +40,14 @@ const createPage = (teamMembers) => {
           <button class="btn btn-sm"><a href="mailto:${engineer.getEmail()}">Email ${engineer.getName()}</a></button>
           </div>
         </div>
+        </div>
             `;
   };
 
   const createIntern = (intern) => {
     return `
-        <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=2D297A22" alt="Profile Photo" /></figure>
+    <div class="card w-96 bg-base-100 shadow-xl">    
+    <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=2D297A22" alt="Profile Photo" /></figure>
         <div class="card-body">
           <h2 class="card-title">
           ${intern.getName()}
@@ -55,6 +60,7 @@ const createPage = (teamMembers) => {
           <div class="card-actions justify-end">
           <button class="btn btn-sm"><a href="mailto:${intern.getEmail()}">Email ${intern.getName()}</a></button>
           </div>
+        </div>
         </div>
             `;
   };
