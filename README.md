@@ -9,3 +9,7 @@ Coming soon!
 
 ## Requirements
 Node.js / <a href="https://github.com/enquirer/enquirer">Enquirer</a> / <a href="https://jestjs.io/">Jest</a>
+
+## Note on running Jest
+Use this command instead of running "npm test":
+<code>node --experimental-vm-modules node_modules/.bin/jest</code>
