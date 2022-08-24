@@ -87,7 +87,8 @@ const createPage = (teamMembers) => {
   return html.join('');
 };
 
-export default function (teamMembers) {
+module.exports = (teamMembers) => {
+  // export default function (teamMembers) {
   return `
   <!doctype html>
   <html data-theme="dracula">
@@ -112,4 +113,4 @@ export default function (teamMembers) {
   
   </html>
     `;
-}
+};

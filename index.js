@@ -1,14 +1,13 @@
-import pkg from 'enquirer';
+const pkg = require('enquirer');
 const { prompt } = pkg;
 
-import { writeFileSync } from 'fs';
+const { writeFileSync } = require('fs');
 
-// import Employee from './lib/Employee.js';
-import Manager from './lib/Manager.js';
-import Engineer from './lib/Engineer.js';
-import Intern from './lib/Intern.js';
+const createPage = require('./src/page-template.js');
 
-import createPage from './src/page-template.js';
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 const teamMembers = [];
 
