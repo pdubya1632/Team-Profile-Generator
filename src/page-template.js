@@ -1,7 +1,7 @@
 const createPage = (teamMembers) => {
   const createManager = (manager) => {
     return `
-    <div class="card w-96 bg-base-100 shadow-xl px-6">
+    <div class="card card-compact w-96 shadow-xl bg-neutral">
     <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=8B7BCDC2" alt="Profile Photo" /></figure>
       <div class="card-body">
         <h2 class="card-title">
@@ -23,7 +23,7 @@ const createPage = (teamMembers) => {
 
   const createEngineer = (engineer) => {
     return `
-    <div class="card w-96 bg-base-100 shadow-xl px-6">  
+    <div class="card card-compact w-96 shadow-xl bg-neutral">
     <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=225E6693" alt="Profile Photo" /></figure>
         <div class="card-body">
           <h2 class="card-title">
@@ -45,7 +45,7 @@ const createPage = (teamMembers) => {
 
   const createIntern = (intern) => {
     return `
-    <div class="card w-96 bg-base-100 shadow-xl px-6">
+    <div class="card card-compact w-96 shadow-xl bg-neutral">
     <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=2D297A22" alt="Profile Photo" /></figure>
         <div class="card-body">
           <h2 class="card-title">
@@ -88,29 +88,26 @@ const createPage = (teamMembers) => {
 };
 
 module.exports = (teamMembers) => {
-  // export default function (teamMembers) {
   return `
   <!doctype html>
   <html data-theme="dracula">
   
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.3/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  
-  <body>
-    <header class="navbar bg-base-100">
-      <a href="/" class="btn btn-ghost normal-case text-xl">Team Directory</a>
-    </header>
-    <div class="flex">
-      <div class="card-compact w-96 bg-base-100 shadow-xl">
-        ${createPage(teamMembers)}
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.3/dist/full.css" rel="stylesheet" type="text/css" />
+      <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    
+    <body>
+      <header class="navbar bg-base-100">
+        <a href="/" class="btn btn-ghost normal-case text-xl">Team Directory</a>
+      </header>
+      <div class="flex px-6 justify-between">
+          ${createPage(teamMembers)}
       </div>
-    </div>
-  </body>
-  
+    </body>
+
   </html>
     `;
 };
