@@ -1,4 +1,3 @@
-
 const createPage = (teamMembers) => {
   const createManager = (manager) => {
     return `
@@ -69,23 +68,23 @@ const createPage = (teamMembers) => {
 
   html.push(
     teamMembers
-      .filter((employee) => employee.getRole() === "Manager")
+      .filter((employee) => employee.getRole() === 'Manager')
       .map((manager) => createManager(manager))
   );
   html.push(
     teamMembers
-      .filter((employee) => employee.getRole() === "Engineer")
+      .filter((employee) => employee.getRole() === 'Engineer')
       .map((engineer) => createEngineer(engineer))
-      .join("")
+      .join('')
   );
   html.push(
     teamMembers
-      .filter((employee) => employee.getRole() === "Intern")
+      .filter((employee) => employee.getRole() === 'Intern')
       .map((intern) => createIntern(intern))
-      .join("")
+      .join('')
   );
 
-  return html.join("");
+  return html.join('');
 };
 
 export default function (teamMembers) {
@@ -104,11 +103,13 @@ export default function (teamMembers) {
     <header class="navbar bg-base-100">
       <a href="/" class="btn btn-ghost normal-case text-xl">Team Directory</a>
     </header>
-    <div class="card-compact w-96 bg-base-100 shadow-xl">
-      ${createPage(teamMembers)}
+    <div class="px-6">
+      <div class="card-compact w-96 bg-base-100 shadow-xl">
+        ${createPage(teamMembers)}
+      </div>
     </div>
   </body>
   
   </html>
     `;
-};
+}
