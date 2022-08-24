@@ -1,7 +1,7 @@
 const createPage = (teamMembers) => {
   const createManager = (manager) => {
     return `
-    <div class="card w-96 bg-base-100 shadow-xl">  
+    <div class="card w-96 bg-base-100 shadow-xl px-6">
     <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=8B7BCDC2" alt="Profile Photo" /></figure>
       <div class="card-body">
         <h2 class="card-title">
@@ -23,7 +23,7 @@ const createPage = (teamMembers) => {
 
   const createEngineer = (engineer) => {
     return `
-    <div class="card w-96 bg-base-100 shadow-xl">    
+    <div class="card w-96 bg-base-100 shadow-xl px-6">  
     <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=225E6693" alt="Profile Photo" /></figure>
         <div class="card-body">
           <h2 class="card-title">
@@ -45,7 +45,7 @@ const createPage = (teamMembers) => {
 
   const createIntern = (intern) => {
     return `
-    <div class="card w-96 bg-base-100 shadow-xl">    
+    <div class="card w-96 bg-base-100 shadow-xl px-6">
     <figure><img src="https://api.lorem.space/image/burger?w=400&h=225&hash=2D297A22" alt="Profile Photo" /></figure>
         <div class="card-body">
           <h2 class="card-title">
@@ -104,7 +104,7 @@ module.exports = (teamMembers) => {
     <header class="navbar bg-base-100">
       <a href="/" class="btn btn-ghost normal-case text-xl">Team Directory</a>
     </header>
-    <div class="px-6">
+    <div class="flex">
       <div class="card-compact w-96 bg-base-100 shadow-xl">
         ${createPage(teamMembers)}
       </div>
